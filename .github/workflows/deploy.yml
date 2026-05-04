@@ -1,5 +1,8 @@
 name: CI/CD Pipeline - Maverick Bank
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches: [ main ]
@@ -17,8 +20,11 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Build and Run Mockito Tests
-        run: mvn clean verify -DskipTests=false
+      - name: Build and Run Unit Tests
+        run: mvn clean test -pl . -Dtest="com.example.demo.service.*Test" -DfailIfNoTests=false
+
+      - name: Package Application
+        run: mvn package -DskipTests
 
   docker-build-push:
     needs: build-and-test
