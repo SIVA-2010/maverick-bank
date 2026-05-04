@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: maverick-backend
+    ports:
+      - "5000:5000"
+    environment:
+      # host.docker.internal allows the Docker container to connect to your local Windows MySQL instance
+      - DB_HOST=host.docker.internal
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  frontend:
+    build:
+      context: ./react/maverick-bank-frontend
+      dockerfile: Dockerfile
+    container_name: maverick-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+    # Ensure backend starts before frontend
+    depends_on:
+      - backend
