@@ -21,7 +21,7 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 @RequestMapping("/api/v1/employee")
 @PreAuthorize("hasAnyRole('EMPLOYEE', 'ADMIN')")
 @SecurityRequirement(name = "BearerAuth")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class EmployeeController {
 
     @Autowired
