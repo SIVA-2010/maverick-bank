@@ -40,7 +40,7 @@ const AddBeneficiary = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/v1/customer/beneficiary', beneficiary, {
+            await axios.post('http://16.171.9.141:5000/api/v1/customer/beneficiary', beneficiary, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Beneficiary added successfully!');

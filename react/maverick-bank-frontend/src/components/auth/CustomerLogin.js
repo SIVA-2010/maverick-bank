@@ -11,7 +11,7 @@ const CustomerLogin = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://localhost:5000/api/v1/auth/login', {
+            const response = await axios.post('http://16.171.9.141:5000/api/v1/auth/login', {
                 email: email,
                 password: password
             });

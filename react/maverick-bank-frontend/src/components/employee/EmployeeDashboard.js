@@ -18,16 +18,16 @@ const EmployeeDashboard = () => {
     const fetchStats = async () => {
         try {
             const token = localStorage.getItem('token');
-            const customers = await axios.get('http://localhost:5000/api/v1/employee/customers', {
+            const customers = await axios.get('http://16.171.9.141:5000/api/v1/employee/customers', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const accounts = await axios.get('http://localhost:5000/api/v1/employee/accounts', {
+            const accounts = await axios.get('http://16.171.9.141:5000/api/v1/employee/accounts', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const transactions = await axios.get('http://localhost:5000/api/v1/employee/transactions', {
+            const transactions = await axios.get('http://16.171.9.141:5000/api/v1/employee/transactions', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const loans = await axios.get('http://localhost:5000/api/v1/employee/loan-applications', {
+            const loans = await axios.get('http://16.171.9.141:5000/api/v1/employee/loan-applications', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

@@ -16,7 +16,7 @@ const ManageAdmins = () => {
     const fetchAdmins = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/v1/admin/admins', {
+            const response = await axios.get('http://16.171.9.141:5000/api/v1/admin/admins', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAdmins(response.data);
@@ -31,7 +31,7 @@ const ManageAdmins = () => {
         if (window.confirm('Are you sure you want to delete this admin?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://localhost:5000/api/v1/admin/admin/${adminId}`, {
+                await axios.delete(`http://16.171.9.141:5000/api/v1/admin/admin/${adminId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Admin deleted successfully!');

@@ -14,7 +14,7 @@ const AllTransactions = () => {
     const fetchTransactions = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/v1/employee/transactions', {
+            const response = await axios.get('http://16.171.9.141:5000/api/v1/employee/transactions', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTransactions(response.data);

@@ -16,7 +16,7 @@ const LoanApplicationsList = () => {
     const fetchApplications = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/v1/employee/loan-applications', {
+            const response = await axios.get('http://16.171.9.141:5000/api/v1/employee/loan-applications', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setApplications(response.data);
@@ -30,7 +30,7 @@ const LoanApplicationsList = () => {
     const handleApprove = async (applicationId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:5000/api/v1/employee/loan-application/${applicationId}/approve`, {}, {
+            await axios.put(`http://16.171.9.141:5000/api/v1/employee/loan-application/${applicationId}/approve`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Loan approved successfully!');
@@ -47,7 +47,7 @@ const LoanApplicationsList = () => {
     const handleReject = async (applicationId) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:5000/api/v1/employee/loan-application/${applicationId}/reject`, {}, {
+            await axios.put(`http://16.171.9.141:5000/api/v1/employee/loan-application/${applicationId}/reject`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Loan rejected!');

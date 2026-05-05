@@ -14,7 +14,7 @@ const CustomerBeneficiaries = () => {
     const fetchBeneficiaries = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/v1/customer/my-beneficiaries', {
+            const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-beneficiaries', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setBeneficiaries(response.data);

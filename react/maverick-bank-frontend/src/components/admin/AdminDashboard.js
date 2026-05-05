@@ -19,19 +19,19 @@ const AdminDashboard = () => {
     const fetchStats = async () => {
         try {
             const token = localStorage.getItem('token');
-            const admins = await axios.get('http://localhost:5000/api/v1/admin/admins', {
+            const admins = await axios.get('http://16.171.9.141:5000/api/v1/admin/admins', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const employees = await axios.get('http://localhost:5000/api/v1/admin/employees', {
+            const employees = await axios.get('http://16.171.9.141:5000/api/v1/admin/employees', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const customers = await axios.get('http://localhost:5000/api/v1/employee/customers', {
+            const customers = await axios.get('http://16.171.9.141:5000/api/v1/employee/customers', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const accounts = await axios.get('http://localhost:5000/api/v1/employee/accounts', {
+            const accounts = await axios.get('http://16.171.9.141:5000/api/v1/employee/accounts', {
                 headers: { Authorization: `Bearer ${token}` }
             });
-            const transactions = await axios.get('http://localhost:5000/api/v1/employee/transactions', {
+            const transactions = await axios.get('http://16.171.9.141:5000/api/v1/employee/transactions', {
                 headers: { Authorization: `Bearer ${token}` }
             });
 

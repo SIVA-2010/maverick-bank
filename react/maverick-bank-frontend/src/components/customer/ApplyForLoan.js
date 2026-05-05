@@ -20,7 +20,7 @@ const ApplyForLoan = () => {
     const fetchLoanProducts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://localhost:5000/api/loans', {
+            const response = await axios.get('http://16.171.9.141:5000/api/loans', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setLoanProducts(response.data);
@@ -37,7 +37,7 @@ const ApplyForLoan = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/v1/customer/loan-application', {
+            await axios.post('http://16.171.9.141:5000/api/v1/customer/loan-application', {
                 loanId: selectedLoan,
                 requestedAmount: parseFloat(amount),
                 purpose: purpose

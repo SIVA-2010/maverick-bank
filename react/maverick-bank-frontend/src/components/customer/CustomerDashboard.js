@@ -11,7 +11,7 @@ const CustomerDashboard = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:5000/api/v1/customer/my-accounts', {
+                const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-accounts', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAccounts(response.data);
