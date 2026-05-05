@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EmployeeMenu from './EmployeeMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const AllTransactions = () => {
     const [transactions, setTransactions] = useState([]);
@@ -14,7 +15,7 @@ const AllTransactions = () => {
     const fetchTransactions = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/employee/transactions', {
+            const response = await axios.get(API_BASE_URL + '/employee/transactions', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTransactions(response.data);

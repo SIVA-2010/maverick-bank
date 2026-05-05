@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CustomerMenu from './CustomerMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const ApplyForLoan = () => {
     const [loanProducts, setLoanProducts] = useState([]);
@@ -37,7 +38,7 @@ const ApplyForLoan = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://16.171.9.141:5000/api/v1/customer/loan-application', {
+            await axios.post(API_BASE_URL + '/customer/loan-application', {
                 loanId: selectedLoan,
                 requestedAmount: parseFloat(amount),
                 purpose: purpose

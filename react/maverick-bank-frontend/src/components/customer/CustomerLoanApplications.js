@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerMenu from './CustomerMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const CustomerLoanApplications = () => {
     const [loans, setLoans] = useState([]);
@@ -14,7 +15,7 @@ const CustomerLoanApplications = () => {
     const fetchLoans = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-loan-applications', {
+            const response = await axios.get(API_BASE_URL + '/customer/my-loan-applications', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setLoans(response.data);

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EmployeeMenu from './EmployeeMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const AllCustomers = () => {
     const [customers, setCustomers] = useState([]);
@@ -14,7 +15,7 @@ const AllCustomers = () => {
     const fetchCustomers = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/employee/customers', {
+            const response = await axios.get(API_BASE_URL + '/employee/customers', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setCustomers(response.data);

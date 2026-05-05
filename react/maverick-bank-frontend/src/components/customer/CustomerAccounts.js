@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerMenu from './CustomerMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const BRANCHES = {
     'Chennai': { address: '123 Anna Salai, Chennai, TN', ifsc: 'MAVK000CHN1' },
@@ -39,7 +40,7 @@ const CustomerAccounts = () => {
     const fetchAccounts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-accounts', {
+            const response = await axios.get(API_BASE_URL + '/customer/my-accounts', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAccounts(response.data);
@@ -55,7 +56,7 @@ const CustomerAccounts = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://16.171.9.141:5000/api/v1/customer/open-account', newAccount, {
+            await axios.post(API_BASE_URL + '/customer/open-account', newAccount, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Account requested successfully! Pending employee approval.');

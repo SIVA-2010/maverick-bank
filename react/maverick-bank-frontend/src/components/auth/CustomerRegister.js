@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const CustomerRegister = () => {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const CustomerRegister = () => {
 
     const handleSubmit = async () => {
         try {
-            const response = await axios.post('http://16.171.9.141:5000/api/v1/auth/register/customer', customer);
+            const response = await axios.post(API_BASE_URL + '/auth/register/customer', customer);
             setMessage(response.data || 'Registration successful!');
             setIsSuccess(true);
             setTimeout(() => navigate('/customer-login'), 2000);

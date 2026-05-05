@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import EmployeeMenu from './EmployeeMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const AllAccounts = () => {
     const [accounts, setAccounts] = useState([]);
@@ -16,7 +17,7 @@ const AllAccounts = () => {
     const fetchAccounts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/employee/accounts', {
+            const response = await axios.get(API_BASE_URL + '/employee/accounts', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAccounts(response.data);
@@ -30,7 +31,7 @@ const AllAccounts = () => {
     const handleApprove = async (accountNo) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://16.171.9.141:5000/api/v1/employee/account/${accountNo}/approve`, {}, {
+            await axios.put(`${API_BASE_URL}/employee/account/${accountNo}/approve`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Account approved successfully!');
@@ -47,7 +48,7 @@ const AllAccounts = () => {
     const handleReject = async (accountNo) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://16.171.9.141:5000/api/v1/employee/account/${accountNo}/reject`, {}, {
+            await axios.put(`${API_BASE_URL}/employee/account/${accountNo}/reject`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Account rejected successfully!');

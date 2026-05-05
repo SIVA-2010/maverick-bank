@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const CustomerLogin = () => {
     const [email, setEmail] = useState('');
@@ -11,7 +12,7 @@ const CustomerLogin = () => {
 
     const handleLogin = async () => {
         try {
-            const response = await axios.post('http://16.171.9.141:5000/api/v1/auth/login', {
+            const response = await axios.post(API_BASE_URL + '/auth/login', {
                 email: email,
                 password: password
             });

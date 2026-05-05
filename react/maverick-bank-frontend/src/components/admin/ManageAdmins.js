@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminMenu from './AdminMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const ManageAdmins = () => {
     const [admins, setAdmins] = useState([]);
@@ -16,7 +17,7 @@ const ManageAdmins = () => {
     const fetchAdmins = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/admin/admins', {
+            const response = await axios.get(API_BASE_URL + '/admin/admins', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAdmins(response.data);
@@ -31,7 +32,7 @@ const ManageAdmins = () => {
         if (window.confirm('Are you sure you want to delete this admin?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://16.171.9.141:5000/api/v1/admin/admin/${adminId}`, {
+                await axios.delete(`${API_BASE_URL}/admin/admin/${adminId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Admin deleted successfully!');

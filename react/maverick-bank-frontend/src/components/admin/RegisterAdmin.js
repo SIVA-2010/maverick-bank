@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import AdminMenu from './AdminMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const RegisterAdmin = () => {
     const [admin, setAdmin] = useState({
@@ -18,7 +19,7 @@ const RegisterAdmin = () => {
     const handleSubmit = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.post('http://16.171.9.141:5000/api/v1/auth/register/admin', admin, {
+            const response = await axios.post(API_BASE_URL + '/auth/register/admin', admin, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage(response.data || 'Admin registered successfully!');

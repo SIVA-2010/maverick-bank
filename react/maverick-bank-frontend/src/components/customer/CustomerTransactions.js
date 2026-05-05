@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerMenu from './CustomerMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const CustomerTransactions = () => {
     const [transactions, setTransactions] = useState([]);
@@ -27,7 +28,7 @@ const CustomerTransactions = () => {
     const fetchAccounts = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-accounts', {
+            const response = await axios.get(API_BASE_URL + '/customer/my-accounts', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setAccounts(response.data);
@@ -39,7 +40,7 @@ const CustomerTransactions = () => {
     const fetchTransactions = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-transactions', {
+            const response = await axios.get(API_BASE_URL + '/customer/my-transactions', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTransactions(response.data);
@@ -51,7 +52,7 @@ const CustomerTransactions = () => {
     const fetchBeneficiaries = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-beneficiaries', {
+            const response = await axios.get(API_BASE_URL + '/customer/my-beneficiaries', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setBeneficiaries(response.data);
@@ -73,7 +74,7 @@ const CustomerTransactions = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post(`http://16.171.9.141:5000/api/v1/customer/deposit/${selectedAccount}/${depositAmount}`, {}, {
+            const res = await axios.post(`${API_BASE_URL}/customer/deposit/${selectedAccount}/${depositAmount}`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             showMsg(res.data || `Deposited ₹${depositAmount} successfully!`);
@@ -92,7 +93,7 @@ const CustomerTransactions = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post(`http://16.171.9.141:5000/api/v1/customer/withdraw/${selectedAccount}/${withdrawAmount}`, {}, {
+            const res = await axios.post(`${API_BASE_URL}/customer/withdraw/${selectedAccount}/${withdrawAmount}`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             showMsg(res.data || `Withdrawn ₹${withdrawAmount} successfully!`);
@@ -115,7 +116,7 @@ const CustomerTransactions = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.post(`http://16.171.9.141:5000/api/v1/customer/transfer/${fromAccount}/${toAccount}/${amount}`, {}, {
+            const res = await axios.post(`${API_BASE_URL}/customer/transfer/${fromAccount}/${toAccount}/${amount}`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             showMsg(res.data || `Transferred ₹${amount} successfully!`);

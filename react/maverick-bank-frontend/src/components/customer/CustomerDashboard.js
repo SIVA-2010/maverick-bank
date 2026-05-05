@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import CustomerMenu from './CustomerMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const CustomerDashboard = () => {
     const [accounts, setAccounts] = useState([]);
@@ -11,7 +12,7 @@ const CustomerDashboard = () => {
         const fetchData = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://16.171.9.141:5000/api/v1/customer/my-accounts', {
+                const response = await axios.get(API_BASE_URL + '/customer/my-accounts', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setAccounts(response.data);

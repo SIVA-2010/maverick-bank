@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminMenu from './AdminMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const ManageEmployees = () => {
     const [employees, setEmployees] = useState([]);
@@ -16,7 +17,7 @@ const ManageEmployees = () => {
     const fetchEmployees = async () => {
         try {
             const token = localStorage.getItem('token');
-            const response = await axios.get('http://16.171.9.141:5000/api/v1/admin/employees', {
+            const response = await axios.get(API_BASE_URL + '/admin/employees', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setEmployees(response.data);
@@ -31,7 +32,7 @@ const ManageEmployees = () => {
         if (window.confirm('Are you sure you want to delete this employee?')) {
             try {
                 const token = localStorage.getItem('token');
-                await axios.delete(`http://16.171.9.141:5000/api/v1/admin/employee/${emplId}`, {
+                await axios.delete(`${API_BASE_URL}/admin/employee/${emplId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setMessage('Employee deleted successfully!');

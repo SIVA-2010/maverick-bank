@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import CustomerMenu from './CustomerMenu';
 import '../../styles/App.css';
+import { API_BASE_URL } from '../../apiConfig';
 
 const BRANCHES = {
     'Chennai': { address: '123 Anna Salai, Chennai, TN', ifsc: 'MAVK000CHN1' },
@@ -40,7 +41,7 @@ const AddBeneficiary = () => {
         }
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://16.171.9.141:5000/api/v1/customer/beneficiary', beneficiary, {
+            await axios.post(API_BASE_URL + '/customer/beneficiary', beneficiary, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage('Beneficiary added successfully!');
